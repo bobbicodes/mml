@@ -5,7 +5,7 @@ import { setupCounter } from './counter.js'
 
 // Set up Lisp interpreter web worker
 
-const lispworker = new Worker('lisp-worker.js', {
+const lispworker = new Worker('./lisp-worker.js', {
   type: 'module'
 });
 
