@@ -3,6 +3,20 @@ import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
 
+// Set up Lisp interpreter web worker
+
+const lispworker = new Worker('lisp-worker.js', {
+  type: 'module'
+});
+
+lispworker.onmessage = function(e) {
+  if (e.data.type === 'eval') {
+    console.log(e.data.out)
+  }
+}
+
+lispworker.postMessage({"type": "eval", "out": "eval sent"});
+
 document.querySelector('#app').innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
