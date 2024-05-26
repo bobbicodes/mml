@@ -5,9 +5,9 @@ import { setupCounter } from './counter.js'
 
 // Set up Lisp interpreter web worker
 
-const lispworker = new Worker('lisp-worker.js', {
-  type: 'module'
-});
+import Worker from './lisp-worker.js?worker'
+
+const lispworker = new Worker();
 
 lispworker.onmessage = function(e) {
   if (e.data.type === 'eval') {
